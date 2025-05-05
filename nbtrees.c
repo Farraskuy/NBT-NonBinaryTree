@@ -6,6 +6,14 @@
 #include "nbtrees.h"
 
 void Create_tree(Isi_Tree X, int Jml_Node) {
+    for (int i = 0; i < jml_maks; i++)
+    {
+        X[i].info = '\0';
+        X[i].ps_fs = 0;
+        X[i].ps_nb = 0;
+        X[i].ps_pr = 0;
+    }
+    
     Isi_Tree P = {
         {0},
         {'A', 2, 0, 0},
@@ -25,7 +33,7 @@ void Create_tree(Isi_Tree X, int Jml_Node) {
 
 
 boolean IsEmpty (Isi_Tree P) {
-    return (P[0].info == 0);
+    return (P[0].info == '\0');
 }
 
 void PreOrder (Isi_Tree P) {
