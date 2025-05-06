@@ -52,8 +52,6 @@ void PreOrder (Isi_Tree P) {
 }
 
 void InOrder(Isi_Tree P) {    
-    int queue[jml_maks + 1];
-    int rear = 0;
     boolean printed[jml_maks + 1] = {false};
 
     int current = 1;
@@ -63,9 +61,6 @@ void InOrder(Isi_Tree P) {
 
     while (current != 0) {
         if (P[current].ps_fs != 0 && kunjungan && !toBrother) {
-            queue[rear] = current;
-            rear++;
-
             current = P[current].ps_fs;
         } else {
             if (!printed[current]) {
@@ -87,7 +82,6 @@ void InOrder(Isi_Tree P) {
             } else {
                 current = P[current].ps_pr;
                 kunjungan = false;
-                rear--;
             }
         }
     }
@@ -118,16 +112,20 @@ void Level_order(Isi_Tree P, int Jml_Node) {
     int queue[jml_maks + 1];
     int front = 0, rear = 0;
 
-    queue[rear++] = 1;
+    queue[rear] = 1;
+    rear++;
 
     while (front < rear) {
-        int current = queue[front++];
+        int current = queue[front];
+        front++;
+
         printf("%c ", P[current].info);
 
         int child = P[current].ps_fs;
         while (child != 0) {
-            queue[rear++] = child;
+            queue[rear] = child;
             child = P[child].ps_nb;
+            rear++;
         }
     }
 
@@ -137,7 +135,7 @@ void Level_order(Isi_Tree P, int Jml_Node) {
 void PrintTree (Isi_Tree P) {
     int totalElements = nbElmt(P);
     int i;
-    for (i = 1; i < totalElements; i++) {
+    for (i = 1; i <= totalElements; i++) {
         printf("--> Index ke-%d\n", i);
         printf("--------------------------------------\n");
         printf("info array ke-%d         : %c\n", i, P[i].info);

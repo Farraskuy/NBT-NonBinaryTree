@@ -129,7 +129,17 @@ int main(int argc, char *argv[]) {
             printf("Masukkan node yang dicari: ");
             scanf("%c", &X);
             getchar();
-            printf("Jumlah level : %d\n", Level(T, X));
+
+            if (!Search(T, X)) {
+                printf("Node %c tidak ditemukan\n", X);
+                printf("Klik apapun untuk melanjutkan \n");
+
+                getchar();
+                choice = 0;
+                continue;
+            }
+
+            printf("level : %d\n", Level(T, X));
             printf("\n\n");
 
             printf("Klik apapun untuk melanjutkan \n");
